@@ -13,9 +13,7 @@ for (let i= 0;i < 5 ;i++) {
 }
 console.log(numbers);
 //カウンターの初期値を読み込む（HTMLより）
-const texBox1 = document.getElementById("reset");
-const reset =texBox1.value;
-let inCount = reset - 1;
+let inCount =0;
 ////
 let bothCorrect = 0;
 let numCorrect = 0;
