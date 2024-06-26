@@ -7,19 +7,23 @@ const sumNumbers = [
 ]
 
 const numbers =["1","1","1","1","1"]
-const numx = Math.floor(Math.random() * 9) + 1;
+const numx = Math.floor(Math.random() * 8) + 0;
 for (let i= 0;i < 5 ;i++) {
   numbers[i] = sumNumbers[numx][i];
 }
-//答えをコンソールに表示しておく
 console.log(numbers);
-let inCount = 0
-let bothCorrect = 0
-let numCorrect = 0
+//カウンターの初期値を読み込む（HTMLより）
+const texBox1 = document.getElementById("reset");
+const reset =texBox1.value;
+let inCount = reset - 1;
+////
+let bothCorrect = 0;
+let numCorrect = 0;
  function clickbutton() {
   inCount = inCount +1;
-  bothCorrect = 0
-  numCorrect = 0
+  document.getElementsByTagName("counter").innerHTML =inCount;
+  bothCorrect = 0;
+  numCorrect = 0;
   if (inCount <= 5) {
     // num1 の処理
     const texBox1 = document.getElementById("num1");
@@ -51,9 +55,11 @@ let numCorrect = 0
         numCorrect=numCorrect + 1; //数字も正解
         }
       }
+      //
       // num3 の処理
      const texBox3 = document.getElementById("num3");
      const number3 =texBox3.value;
+      // console.log(number3);
       for (let i= 0; i < 5;i++) {   //　num3 のチェック
         if (i === 2 ) {
           if (number3 === numbers[i])
@@ -66,10 +72,9 @@ let numCorrect = 0
             numCorrect=numCorrect + 1; //数字も正解
             }
           }
-  // num4 の処理
+  //
       const texBox4 = document.getElementById("num4");
      const number4 =texBox4.value;
-      // console.log(number4);
       for (let i= 0; i < 5;i++) {   //　num4 のチェック
         if (i === 3 ) {
           if (number4 === numbers[i])
@@ -82,10 +87,10 @@ let numCorrect = 0
             numCorrect=numCorrect + 1; //数字も正解
             }
           }
+  //
   // num5 の処理
       const texBox5 = document.getElementById("num5");
      const number5 =texBox5.value;
-      // console.log(number5);
       for (let i= 0; i < 5;i++) {   //　num5 のチェック
         if (i === 4 ) {
           if (number5 === numbers[i])
@@ -102,23 +107,31 @@ let numCorrect = 0
     document.getElementsByTagName("p")[inCount].innerHTML =inCount+"回目   "
     +number1+"  "+number2+"  "+number3+"  "+number4+"  "+number5
     +" 数字と位置：　"+bothCorrect + "   数字：　" + numCorrect ;
+    // ５桁、一、数字とも全て正解しているか
     if (bothCorrect === 5){
       document.getElementsByTagName("p")[6].innerHTML ="正解です！　おめでとうございます。"
-      inCount =0;
+      //カウンターの初期値を読み込む（HTMLより）
+    const texBox1 = document.getElementById("reset");
+    const reset =texBox1.value;
+    inCount = reset - 1;
     }
+    //　５回のTRYをおえてしまったか？
     else if (inCount === 5){
       document.getElementsByTagName("p")[6].innerHTML ="残念！はずれです。"
       inCount = 0;
     }
-  } 
-   return;
+   return ;
+  
+  } else 
+   {document.getElementsByTagName("p")[6].innerHTML ="終了です。"
+   return ;}
  }
 ////////////////初期化処理　
-function clear5(inCount) {
+function clear5() {
   inCount = 0
  for (let i=1;i<=5;i++){
    document.getElementsByTagName("p")[i].innerHTML =i+"回目";
-  }
+}
 document.getElementsByTagName("p")[6].innerHTML ="数字を５つ入力して、try ボタンを押して下さい。"
 //
 let element1 = document.getElementById("num1");
@@ -131,8 +144,8 @@ let element1 = document.getElementById("num1");
  element4.value = "";
  let element5 = document.getElementById("num5");
  element5.value = "";
+ inCount=0;
 }
-//ボタンクリック待ち
  const input5 = document.getElementById("btn1");
   input5.addEventListener("click",clickbutton);
 const clernum = document.getElementById("btn0");
