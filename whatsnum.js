@@ -7,7 +7,7 @@ const sumNumbers = [
 ]
 
 const numbers =["1","1","1","1","1"]
-const numx = Math.floor(Math.random() * 8) + 0;
+const numx = Math.floor(Math.random() * 9) + 1;
 for (let i= 0;i < 5 ;i++) {
   numbers[i] = sumNumbers[numx][i];
 }
